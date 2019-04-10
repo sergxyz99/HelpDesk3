@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>th:text="${heading}">Edit data for this ticket</title>
+    <link rel="stylesheet" type="text/css" media="all" href="../../css/bootstrap.min.css"
+          th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" href="../../css/common.css" th:href="@{/css/common.css}"/>
+</head>
+
+<body>
+<div class="container">
+    <form method="POST" th:object="${userForm}" action="#" th:action="@{/registration}" class="form-signin">
+        <h2 class="form-signin-heading" th:text="${heading}">Create your account</h2>
+
+        <div class="form-group col-md-20">
+            <input id="id" type="hidden" th:field="*{id}" class="form-control" placeholder="Username">
+        </div>
+        <div class="form-group col-md-20">
+            <input id="username" type="text" th:field="*{username}" class="form-control" autofocus="true"
+                   placeholder="Username">
+            <span th:if="${#fields.hasErrors('username')}" class="text-danger" th:errors="${userForm.username}">Incorrect LP</span>
+        </div>
+        <div class="form-group col-md-20">
+            <input id="firstname" type="text" th:field="*{firstName}" class="form-control" autofocus="true"
+                   placeholder="First name">
+            <span th:if="${#fields.hasErrors('firstName')}" class="text-danger" th:errors="${userForm.firstName}">Incorrect LP</span>
+        </div>
+        <div class="form-group col-md-20">
+            <input id="secondname" type="text" th:field="*{secondName}" class="form-control" placeholder="Second name">
+            <span th:if="${#fields.hasErrors('secondName')}" class="text-danger" th:errors="${userForm.secondName}">Incorrect LP</span>
+        </div>
+        <div class="form-group col-md-20">
+            <input id="email" type="text" th:field="*{email}" class="form-control" placeholder="email">
+            <span th:if="${#fields.hasErrors('email')}" class="text-danger"
+                  th:errors="${userForm.email}">Incorrect LP</span>
+        </div>
+        <div class="form-group col-md-20">
+            <input id="password" type="password" th:field="*{password}" class="form-control" autofocus="true"
+                   placeholder="Password">
+            <span th:if="${#fields.hasErrors('password')}" class="text-danger" th:errors="${userForm.password}">Incorrect LP</span>
+        </div>
+        <div class="form-group col-md-20">
+            <input id="passwordConfirm" type="password" th:field="*{passwordConfirm}" class="form-control"
+                   placeholder="Confirm password">
+            <span th:if="${#fields.hasErrors('passwordConfirm')}" class="text-danger"
+                  th:errors="${userForm.passwordConfirm}">Incorrect LP</span>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" th:type="submit">Submit</button>
+    </form>
+</div>
+
+<div th:replace="general :: footer"></div>
+</body>
+</html>

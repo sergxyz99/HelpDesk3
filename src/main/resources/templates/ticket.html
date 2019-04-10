@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- https://www.odoo.com/page/helpdesk -->
+    <title>Help Desk</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <script type="text/javascript" src="../../js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+    <script type="text/javascript" src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+
+    <link rel="stylesheet" type="text/css" media="all" href="../../css/styles.css" th:href="@{/css/styles.css}"/>
+
+
+</head>
+<body>
+
+<div th:replace="general :: header"></div>
+
+<div class="form-group">
+    <br/>
+    <h2 padding-right:50px th:text="${heading}">Edit data for this ticket</h2>
+    <br/>
+</div>
+
+<section class="container">
+
+    <form method="POST" th:action="@{/ticket/new}" th:object="${ticketAttr}" class="form-horizontal">
+        <fieldset>
+
+            <div class="form-group">
+                <div class="col-lg-10">
+                    <label class="control-label col-lg-2 col-lg-2" for="Id">Id</label>
+                    <input id="id" th:field="*{id}" type="text"
+                           class="form:input-large" readonly="true"/>
+                </div>
+
+                <div class="col-lg-10">
+                    <label class="control-label col-lg-2 col-lg-2" for="name">
+                        <span th:text="#{ticket.form.name.label}"></span>
+                    </label>
+                    <input id="name" th:field="*{name}" type="text" class="form:input-large" placeholder="Name"/>
+                </div>
+
+                <div class="col-lg-10">
+                    <label class="control-label col-lg-2 col-lg-2" for="text">
+                        <span th:text="#{ticket.form.text.label}"></span>
+                    </label>
+
+                    <textarea th:field="*{text}" id="text" type="text"
+                              rows="3" cols="100"/>
+                </div>
+
+                <div class="col-lg-10">
+                    <label class="control-label col-lg-2 col-lg-2" for="kind">
+                        <span th:text="#{ticket.form.kind.label}"></span>
+                    </label>
+
+                    <select id="kind" name="kind" th:field="*{ticketsKind}">
+                        <option th:each="kind : ${kindList}"
+                                th:value="${kind.id}"
+                                th:text="${kind.name}"
+                        >
+                        </option>
+                    </select>
+                </div>
+                <div class="col-lg-10">
+                    <label class="control-label col-lg-2 col-lg-2" for="priority">
+                        <span th:text="#{ticket.form.priority.label}"></span>
+                    </label>
+
+                    <select id="priority" name="priority">
+                        <option th:each="priority : ${priorityList}"
+                                th:value="${priority.name()}"
+                                th:text="${priority.name()}"
+                                th:selected="${priority.name()==ticketAttr.getPriority().name()}">
+                        </option>
+                    </select>
+
+                </div>
+
+                <div class="col-lg-10">
+                    <label class="control-label col-lg-2 col-lg-2" for="ticket_status">
+                        <p th:text="#{ticket.form.status.label}"></p>
+                    </label>
+
+                    <input id="ticket_status" th:field="*{status}" type="text"
+                           class="form:input-large" readonly="true"/>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-lg-offset-2 col-lg-10">
+                    <input type="submit" id="btnAdd" class="btn btn-primary"
+                           value="Save"/>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+
+</section>
+<div th:replace="general :: footer"></div>
+
+<script type="text/javascript" src="../../js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+
+<script type="text/javascript" th:src="@{/js/ticket.js}"></script>
+
+</body>
+</html>

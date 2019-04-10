@@ -1,0 +1,68 @@
+h2 {
+    text-align: center;
+    color: black; /* Цвет текста */
+/*     background: #000080; !* Цвет фона блока   *!
+     color: #ffe; !* Цвет текста   *!
+     margin: 250px; !* Нулевые отступы вокруг текста   *!
+     padding: 10px; !* Поля вокруг текста  *!*/
+}
+
+nav {
+    width: 100%;
+    height: 80px;
+    /*      background: -webkit-linear-gradient(#3f9a15, #388813, #3f9a15, #388813, #3f9a15);
+         background: -o-linear-gradient(#3f9a15, #388813, #3f9a15, #388813, #3f9a15);
+         background: linear-gradient(#3f9a15, #388813, #3f9a15, #388813, #3f9a15);
+         border-radius: 6px !important;
+         -moz-border-radius: 6px !important; */
+}
+
+.navbar-nav{
+    font-size: 22px;
+     padding-top:8px;
+}
+.navbar-btn{
+    font-size: 22px;
+    /* padding-right:50px; */
+}
+
+.user_name{
+	/*padding-left:75px;*/
+    /*color: #ffe;*/
+    font-size: 18px;
+    font-style: italic;
+    /*font-palette: yellow;*/
+}
+
+.button_new_ticket{
+    padding-right:75px;
+}
+
+/*.logout{
+    padding-bottom:35px;
+}*/
+
+/* form {
+	text-align:center;
+	padding: 16px;
+	padding-left:450px;
+} */
+
+.input-daterange {
+    width: 900px;
+    font-size: 18px;
+    padding-left:400px;
+}
+
+.input-group-addon{
+    padding-left:0px;
+    padding-right:20px;
+    font-size: 18px;
+    /* width: 30px; */
+}
+.img.two {
+    margin-left:75px;
+    height: 50%;
+    width: 50%;
+    padding-right:75px;
+}
