@@ -1,7 +1,7 @@
 package com.zs.helpdesk3.controller;
 
-import com.zs.helpdesk3.GlobalVar;
 import com.zs.helpdesk3.domain.Ticket;
+import com.zs.helpdesk3.service.SecurityService;
 import com.zs.helpdesk3.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,20 +21,20 @@ public class HomeController {
     @Autowired
     private TicketService ticketService;
     @Autowired
-    GlobalVar globalVar;
+    SecurityService securityService;
+
     private final static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 
     @RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
-     public String welcomeWithDates(@RequestParam(value = "startdate", required = false) String startDateString,
+    public String welcomeWithDates(@RequestParam(value = "startdate", required = false) String startDateString,
                                    @RequestParam(value = "enddate", required = false) String endDateString, Model model) {
 
-        globalVar.setCurrentUser();
-        List<Ticket> ticketsList=new ArrayList<>();
+        List<Ticket> ticketsList = new ArrayList<>();
         if (null != startDateString) {
-            ticketsList = this.ticketService.findByAuthorAndDateCreatedBetween(globalVar.getCurrentUser(),LocalDate.parse(startDateString,dateTimeFormatter),
-                    LocalDate.parse(endDateString,dateTimeFormatter));
+            ticketsList = this.ticketService.findByAuthorAndDateCreatedBetween(securityService.getCurrentUser(), LocalDate.parse(startDateString, dateTimeFormatter),
+                    LocalDate.parse(endDateString, dateTimeFormatter));
         } else {
-            ticketsList = this.ticketService.findByAuthor(globalVar.getCurrentUser());
+            ticketsList = this.ticketService.findByAuthor(securityService.getCurrentUser());
         }
         model.addAttribute("tickets", ticketsList);
         return "welcome";
