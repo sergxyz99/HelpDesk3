@@ -16,10 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class TicketRestController {
     @Autowired
     private TicketService ticketService;
-    @Autowired
-    private CommonService commonService;
-    @Autowired
-    GlobalVar globalVar;
 
     @RequestMapping(value = "/ticket/{Id}", method = RequestMethod.GET)
     public Ticket getTicketById(@PathVariable("Id") Long Id, Model model) {
