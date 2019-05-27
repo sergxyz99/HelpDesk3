@@ -33,13 +33,9 @@ public class TicketController {
 
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String newTicket(Model model) {
-        List<TicketsKind> ticketsKindList = commonService.getAllTicketsKinds();
         Ticket ticket = new Ticket();
-        model.addAttribute("kindList", ticketsKindList);
-        List<Ticket.Priority> priorityList = new ArrayList<Ticket.Priority>(Arrays.asList(Ticket.Priority.values()));
-        model.addAttribute("priorityList", new ArrayList<Ticket.Priority>(Arrays.asList(Ticket.Priority.values())));
+        fillTicketsData(model, "Fill data for the new ticket");
         model.addAttribute("ticketAttr", ticket);
-        model.addAttribute("heading", "Fill data for the new ticket");
         return "ticket";
     }
 
@@ -62,17 +58,20 @@ public class TicketController {
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public String editTicket(@RequestParam(value = "id") Long Id, Model model) {
-        List<TicketsKind> ticketsKindList = commonService.getAllTicketsKinds();
         Ticket ticket = ticketService.findById(Id);
+        fillTicketsData(model, "Edit data for this ticket");
         dateCreatedEditedTicket = ticket.getDateCreated();
-        model.addAttribute("kindList", ticketsKindList);
-        List<Ticket.Priority> priorityList = new ArrayList<Ticket.Priority>(Arrays.asList(Ticket.Priority.values()));
-        model.addAttribute("priorityList", new ArrayList<Ticket.Priority>(Arrays.asList(Ticket.Priority.values())));
         model.addAttribute("ticketAttr", ticket);
-        model.addAttribute("heading", "Edit data for this ticket");
         return "ticket";
     }
 
+    private Model fillTicketsData(Model model, String heading){
+        List<TicketsKind> ticketsKindList = commonService.getAllTicketsKinds();
+        model.addAttribute("kindList", ticketsKindList);
+        model.addAttribute("priorityList", new ArrayList<>(Arrays.asList(Ticket.Priority.values())));
+        model.addAttribute("heading", heading);
+        return model;
+    }
 
 }
 
