@@ -53,7 +53,7 @@ public class UserController {
             return "registration";
         }
 
-        Boolean newUser = userForm.getId() == null;
+        boolean newUser = userForm.getId() == null;
         userService.save(userForm);
         if (newUser) {
             securityService.autologin(request, userForm.getUsername(), userForm.getPasswordConfirm());
@@ -74,7 +74,7 @@ public class UserController {
         return null;
     }
 
-    @RequestMapping(value = "/editProfile", method = RequestMethod.POST)
+    @RequestMapping(value = "/editProfile", method = RequestMethod.PUT)
     public String editProfile(@RequestParam(value = "name") String userName, Model model) {
 
         Optional<User> user = Optional.ofNullable(userService.findByUsername(userName));

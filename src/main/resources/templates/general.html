@@ -35,14 +35,14 @@
             </div>
 
             <a id="edt_Profile" class="nav-link active" href="#" onclick="document.forms['editProfile'].submit()">Profile</a>
-            <form id="editProfile" method="POST" action="#" th:action="@{/editProfile/(name=${#request.userPrincipal.name})}">
+            <form id="editProfile" th:method="PUT" action="#" th:action="@{/editProfile/(name=${#request.userPrincipal.name})}">
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             </form>
 
             <a id="btn_logout" class="nav-link active" href="#"
                onclick="document.forms['logoutForm'].submit()">Logout</a>
 
-            <form id="logoutForm" method="POST" action="#" th:action="@{/appLogout}">
+            <form id="logoutForm" th:method="POST" action="#" th:action="@{/appLogout}">
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
             </form>
         </ul>
