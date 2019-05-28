@@ -50,13 +50,13 @@ public class TicketController {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     public String deleteTicket(@RequestParam(value = "id") Long Id, Model model) {
         ticketService.deleteById(Id);
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    @RequestMapping(value = "/edit", method = RequestMethod.PUT)
     public String editTicket(@RequestParam(value = "id") Long Id, Model model) {
         Ticket ticket = ticketService.findById(Id);
         fillTicketsData(model, "Edit data for this ticket");

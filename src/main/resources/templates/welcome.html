@@ -74,7 +74,7 @@
             <td th:text="${ticket.getStatus().name()}">Status</td>
 
             <td>
-                <form id="edit" method="post" action="#" th:action="@{/ticket/edit/(id=${ticket.getId()})}"
+                <form id="edit" th:method="PUT" action="#" th:action="@{/ticket/edit/(id=${ticket.getId()})}"
                       class="form-signin">
                     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                     <button class="btn btn-primary">Edit</button>
@@ -82,7 +82,7 @@
             </td>
 
             <td>
-                <form id="delete" method="POST" action="#" th:action="@{/ticket/delete/(id=${ticket.id})}">
+                <form id="delete" th:method="DELETE" action="#" th:action="@{/ticket/delete/(id=${ticket.id})}">
                     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                     <button class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
                 </form>
