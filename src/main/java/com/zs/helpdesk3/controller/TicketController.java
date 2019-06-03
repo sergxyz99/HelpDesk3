@@ -21,13 +21,16 @@ import java.util.List;
 @RequestMapping(value = "/ticket")
 public class TicketController {
     private LocalDate dateCreatedEditedTicket;
-    @Autowired
-    private SecurityService securityService;
+    private final SecurityService securityService;
 
-    @Autowired
-    private TicketService ticketService;
-    @Autowired
-    private CommonService commonService;
+    private final TicketService ticketService;
+    private final CommonService commonService;
+
+    public TicketController(SecurityService securityService, TicketService ticketService, CommonService commonService) {
+        this.securityService = securityService;
+        this.ticketService = ticketService;
+        this.commonService = commonService;
+    }
 //    @Autowired
 //    GlobalVar globalVar;
 
